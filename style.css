@@ -116,7 +116,7 @@ body{
 
 /* MENSAGEM DE VITÓRIA */ 
 .winning-message{
-    display: flex;
+    display: none;
 
     /* Faz a DIV fugir do fluxo da página, fica no centro e ocupa toda a largura e altura */ 
     position: fixed;
