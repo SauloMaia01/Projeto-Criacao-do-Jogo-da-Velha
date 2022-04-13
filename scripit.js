@@ -2,6 +2,7 @@ const cellElements = document.querySelectorAll("[data-cell]");
 const board = document.querySelector("[data-board]");
 const winningMessageTextElement = document.querySelector("[data-winning-message-text]");
 const winningMessage = document.querySelector("[data-winning-message-text]"); 
+const restartButton = document.querySelector('[data-restart-button]');
 
 let isCircleTurn;
 
@@ -17,14 +18,23 @@ const winningCombinations = [
   ];
 
 const startGame = () => {
-    for (const cell of cellElements) {
-        cell.addEventListener("click", handleClick, {once:true});
 
-        isCircleTurn;
+    for (const cell of cellElements) {
+        isCircleTurn = false;
+
+        cell.classList.remove("circle");
+        cell.classList.remove("x");
+        cell.removeEventListener("click", handleClick);
+
+        cell.addEventListener("click", handleClick, {once:true});
+    };
+        setBoardHoverClass()
 
         board.classList.add("x");
-    };
+
+        winningMessage.classList.remove("show-winning-message");
 };
+
 
 const endGame = (isDraw) => {
     if (isDraw) {
@@ -34,6 +44,8 @@ const endGame = (isDraw) => {
         ? "O Venceu"
         : "X Venceu";
     }
+
+    winningMessage.classList.add("show-winning-message");
 };
 
 
@@ -50,10 +62,7 @@ const placeMark = (cell, classToAdd) => {
     cell.classList.add(classToAdd);
 };
 
-// Mudar simbolo
-const swapTurns = () => {
-    isCircleTurn = !isCircleTurn;
-
+const setBoardHoverClass = () => {
     board.classList.remove("circle");
     board.classList.remove("x");
 
@@ -62,6 +71,13 @@ const swapTurns = () => {
     } else {
         board.classList.add("x");
     }
+}
+
+// Mudar simbolo
+const swapTurns = () => {
+    isCircleTurn = !isCircleTurn;
+
+    setBoardHoverClass()
 };
 
 const handleClick = (e) => {
@@ -74,14 +90,16 @@ const handleClick = (e) => {
     // Verificar por vitória
     const isWin = checkForWin(classToAdd);
     if (isWin) {
-        endGame(true);
+        endGame(false);
     }
 
     // Verificar por empate
 
     // Mudar simbolo
-    swapTurns();
+    swapTurns(); 
 };
 
 startGame();
+
+restartButton.addEventListener('click', startGame);
 

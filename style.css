@@ -142,12 +142,16 @@ body{
     color: white;
   }
 
-  .winning-message-button:hover {
+.winning-message-button:hover {
     background-color: rgba(65, 185, 131, 1);
     background-color: rgba(250, 246, 246, 0.8);
-  }
+}
 
-  .winning-message-text{
+.winning-message-text {
       color: white;
       font-size: 5rem;
-  }
+}
+
+.show-winning-message {
+    display: flex;
+}
