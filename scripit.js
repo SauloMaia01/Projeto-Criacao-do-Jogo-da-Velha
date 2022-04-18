@@ -1,6 +1,7 @@
 const cellElements = document.querySelectorAll("[data-cell]");
 const board = document.querySelector("[data-board]");
 const winningMessageTextElement = document.querySelector("[data-winning-message-text]");
+const showResults = document.querySelector("[data-winning-message]");
 const winningMessage = document.querySelector("[data-winning-message-text]"); 
 const restartButton = document.querySelector('[data-restart-button]');
 
@@ -32,7 +33,7 @@ const startGame = () => {
 
         board.classList.add("x");
 
-        winningMessage.classList.remove("show-winning-message");
+        showResults.classList.remove("show-winning-message");
 };
 
 
@@ -45,7 +46,7 @@ const endGame = (isDraw) => {
         : "X Venceu";
     }
 
-    winningMessage.classList.add("show-winning-message");
+    showResults.classList.add("show-winning-message");
 };
 
 
